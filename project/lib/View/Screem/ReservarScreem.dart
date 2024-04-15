@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/View/Screem/CEquipoScreem.dart';
 import 'package:project/View/Screem/MyHomePage.dart';
+import 'package:project/View/Screem/PagoScreem.dart';
 import 'package:project/View/Screem/UnirseJuegoScreem.dart';
 
 class ReservarScreem extends StatefulWidget {
@@ -59,7 +60,7 @@ class _ReservarScreemState extends State<ReservarScreem> {
           ListTile(
             title: const Text('Realizar pago ',
                 style: TextStyle(color: Colors.orange)),
-            onTap: () {},
+            onTap: () { Navigator.of(context).pushNamed(PagoScreem.nombre);},
           ),
         ]),
       ),
