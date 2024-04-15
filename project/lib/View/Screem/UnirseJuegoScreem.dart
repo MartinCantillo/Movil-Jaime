@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:project/View/Screem/CEquipoScreem.dart';
+import 'package:project/View/Screem/MyHomePage.dart';
 import 'package:project/View/Screem/ReservarScreem.dart';
-import 'package:project/View/Screem/UnirseJuegoScreem.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
-  static const String nombre = 'MyHomePage';
-
+class UnirseJuegoScreem extends StatefulWidget {
+  const UnirseJuegoScreem({super.key});
+  static const String nombre = 'UnirseJuegoScreem';
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<UnirseJuegoScreem> createState() => _UnirseJuegoScreemState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _UnirseJuegoScreemState extends State<UnirseJuegoScreem> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          "Unirse a un juego ",
+          style: TextStyle(color: Colors.black),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.orange,
+      ),
       drawer: Drawer(
         backgroundColor: Colors.black,
         shadowColor: Colors.white,
@@ -30,31 +37,30 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Colors.black,
             ),
           ),
-            ListTile(
-            title: const Text('Home ',
-                style: TextStyle(color: Colors.orange)),
+          ListTile(
+            title: const Text('Home ', style: TextStyle(color: Colors.orange)),
             onTap: () {
-               Navigator.of(context).pushNamed(MyHomePage.nombre);
+              Navigator.of(context).pushNamed(MyHomePage.nombre);
             },
           ),
           ListTile(
             title: const Text('Crear equipo ',
                 style: TextStyle(color: Colors.orange)),
             onTap: () {
-               Navigator.of(context).pushNamed(CEquipoScreem.nombre);
+              Navigator.of(context).pushNamed(CEquipoScreem.nombre);
             },
           ),
           ListTile(
             title: const Text('Unirse a Juego ',
                 style: TextStyle(color: Colors.orange)),
             onTap: () {
-                Navigator.of(context).pushNamed(UnirseJuegoScreem.nombre);
+              Navigator.of(context).pushNamed(UnirseJuegoScreem.nombre);
             },
           ),
           ListTile(
             title: const Text('Reservar instalaciones ',
                 style: TextStyle(color: Colors.orange)),
-            onTap: () { Navigator.of(context).pushNamed(ReservarScreem.nombre);},
+            onTap: () {  Navigator.of(context).pushNamed(ReservarScreem.nombre);},
           ),
           ListTile(
             title: const Text('Realizar pago ',
@@ -63,13 +69,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ]),
       ),
-      appBar: AppBar(
-          title: const Text(
-            "Bienvenido",
-            style: TextStyle(color: Colors.black),
-          ),
-          centerTitle: true,
-          backgroundColor: Colors.orange),
     ));
   }
 }
