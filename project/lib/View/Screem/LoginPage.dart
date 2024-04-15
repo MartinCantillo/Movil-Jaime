@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/View/Screem/MyHomePage.dart';
 import 'package:project/View/component/MyButton.dart';
 import 'package:project/View/component/MyTextField.dart';
 import 'package:project/View/component/SquareTile.dart';
@@ -16,13 +17,13 @@ class LoginPage extends StatelessWidget {
   void signUserIn(BuildContext context) {
     //prefs.usuario = usernameController.text;
     //prefs.contrasena = passwordController.text;
-   // print (prefs.usuario);
-  //  Navigator.of(context).pushNamed(MapScreen.nombre);
+    // print (prefs.usuario);
+    Navigator.of(context).pushNamed(MyHomePage.nombre);
   }
 
   @override
   Widget build(BuildContext context) {
-  //  prefs.ultimapagina = LoginPage.nombre;
+    //  prefs.ultimapagina = LoginPage.nombre;
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: SafeArea(
