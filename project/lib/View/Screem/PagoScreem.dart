@@ -15,15 +15,16 @@ class PagoScreem extends StatefulWidget {
 class _PagoScreemState extends State<PagoScreem> {
   bool _processingPayment = false;
 
+  // Función para procesar el pago
   void _processPayment() {
-    // Aquí deberías implementar la lógica para procesar el pago,
-    // ya sea integrando una pasarela de pago como Stripe o PayPal.
-    // Esto puede requerir llamadas a API, etc.
+    // Aquí deberías implementar la lógica para procesar el pago
+    // Esta lógica puede variar dependiendo de la pasarela de pago que utilices
+    // Por ejemplo, si usas Stripe, deberías llamar a su API para crear un pago
+
+    // Simulación de proceso de pago (espera de 2 segundos)
     setState(() {
       _processingPayment = true;
     });
-
-    // Simulación de proceso de pago (espera de 2 segundos)
     Future.delayed(Duration(seconds: 2), () {
       // Lógica de confirmación de reserva y notificación al usuario
 
