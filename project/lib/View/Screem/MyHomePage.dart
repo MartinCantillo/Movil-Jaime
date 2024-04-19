@@ -3,6 +3,8 @@ import 'package:project/View/Screem/CEquipoScreem.dart';
 import 'package:project/View/Screem/PagoScreem.dart';
 import 'package:project/View/Screem/ReservarScreem.dart';
 import 'package:project/View/Screem/UnirseJuegoScreem.dart';
+import 'ppp.dart'; // Importa el archivo ppp.dart
+import 'mmmm.dart'; // Importa el archivo mmmm.dart
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -15,91 +17,121 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        drawer: Drawer(
-          backgroundColor: Colors.black,
-          shadowColor: Colors.black,
-          child: ListView(padding: EdgeInsets.zero, children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.orange,
-              ),
-              child: Icon(
-                Icons.person,
-                size: 100,
-                color: Colors.black,
-              ),
-            ),
-            ListTile(
-              title:
-                  const Text('Home ', style: TextStyle(color: Colors.orange)),
-              onTap: () {
-                Navigator.of(context).pushNamed(MyHomePage.nombre);
-              },
-            ),
-            ListTile(
-              title: const Text('Crear equipo ',
-                  style: TextStyle(color: Colors.orange)),
-              onTap: () {
-                Navigator.of(context).pushNamed(CEquipoScreem.nombre);
-              },
-            ),
-            ListTile(
-              title: const Text('Unirse a Juego ',
-                  style: TextStyle(color: Colors.orange)),
-              onTap: () {
-                Navigator.of(context).pushNamed(UnirseJuegoScreem.nombre);
-              },
-            ),
-            ListTile(
-              title: const Text('Reservar instalaciones ',
-                  style: TextStyle(color: Colors.orange)),
-              onTap: () {
-                Navigator.of(context).pushNamed(ReservarScreem.nombre);
-              },
-            ),
-            ListTile(
-              title: const Text('Realizar pago ',
-                  style: TextStyle(color: Colors.orange)),
-              onTap: () {
-                Navigator.of(context).pushNamed(PagoScreem.nombre);
-              },
-            ),
-          ]),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          "Bienvenido",
+          style: TextStyle(color: Colors.black),
         ),
-        appBar: AppBar(
-          title: const Text(
-            "Bienvenido",
-            style: TextStyle(color: Colors.black),
-          ),
-          centerTitle: true,
-          backgroundColor: Colors.orange,
-        ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Image.asset(
+        centerTitle: true,
+        backgroundColor: Colors.orange,
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SizedBox(
+              height: 200,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
+                child: Image.asset(
                   'assets/images/homepage.jpg',
-                  fit: BoxFit.cover, // Para ajustar la imagen al contenedor
+                  fit: BoxFit.cover,
                 ),
-                SizedBox(height: 20),
-                Text(
-                  ' El suiguiente aplicativo se desarrollará para facilitar a los jóvenes la organización de actividades deportivas informales cuando deseen participar en deportes pero les falten compañeros de equipo. Además, la aplicación ofrecerá la posibilidad de alquilar instalaciones deportivas en caso de ser necesario. El propósito de la aplicación es promover un estilo de vida activo y saludable, facilitando la participación en deportes recreativos y la socialización entre los usuarios.',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
-                  ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Text(
+              'El siguiente aplicativo se desarrollará para facilitar a los jóvenes la organización de actividades deportivas informales cuando deseen participar en deportes pero les falten compañeros de equipo. Además, la aplicación ofrecerá la posibilidad de alquilar instalaciones deportivas en caso de ser necesario. El propósito de la aplicación es promover un estilo de vida activo y saludable, facilitando la participación en deportes recreativos y la socialización entre los usuarios.',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 18,
+              ),
+            ),
+            SizedBox(height: 20),
+            Text(
+              'Selecciona una opción:',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => PppScreen(), // Ir a ppp.dart
+                      ),
+                    );
+                  },
+                  icon: Icon(Icons.star),
+                  label: Text('Puntuación'),
+                ),
+                ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => MmmmScreen(), // Ir a mmmm.dart
+                      ),
+                    );
+                  },
+                  icon: Icon(Icons.message),
+                  label: Text('Comunicación'),
                 ),
               ],
             ),
+          ],
+        ),
+      ),
+      drawer: Drawer(
+        child: Container(
+          color: Colors.black,
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              const DrawerHeader(
+                decoration: BoxDecoration(color: Colors.orange),
+                child: Icon(
+                  Icons.person,
+                  size: 100,
+                  color: Colors.black,
+                ),
+              ),
+              _buildDrawerItem('Home', MyHomePage.nombre, Icons.home),
+              _buildDrawerItem(
+                  'Crear equipo', CEquipoScreem.nombre, Icons.group_add),
+              _buildDrawerItem('Unirse a Juego', UnirseJuegoScreem.nombre,
+                  Icons.sports_soccer),
+              _buildDrawerItem('Reservar instalaciones', ReservarScreem.nombre,
+                  Icons.sports_basketball),
+              _buildDrawerItem(
+                  'Realizar pago', PagoScreem.nombre, Icons.payment),
+            ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildDrawerItem(String title, String routeName, IconData icon) {
+    return ListTile(
+      title: Text(
+        title,
+        style: TextStyle(color: Colors.orange),
+      ),
+      leading: Icon(
+        icon,
+        color: Colors.orange,
+      ),
+      onTap: () {
+        Navigator.of(context).pushNamed(routeName);
+      },
     );
   }
 }

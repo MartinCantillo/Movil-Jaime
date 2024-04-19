@@ -45,36 +45,65 @@ class _UnirseJuegoScreemState extends State<UnirseJuegoScreem> {
                 ),
               ),
               ListTile(
-                title:
-                    const Text('Home ', style: TextStyle(color: Colors.orange)),
+                title: Row(
+                  children: [
+                    Icon(Icons.home, color: Colors.orange),
+                    SizedBox(width: 10),
+                    Text('Home ', style: TextStyle(color: Colors.orange)),
+                  ],
+                ),
                 onTap: () {
                   Navigator.of(context).pushNamed(MyHomePage.nombre);
                 },
               ),
               ListTile(
-                title: const Text('Crear equipo ',
-                    style: TextStyle(color: Colors.orange)),
+                title: Row(
+                  children: [
+                    Icon(Icons.sports_soccer, color: Colors.orange),
+                    SizedBox(width: 10),
+                    Text('Crear equipo ',
+                        style: TextStyle(color: Colors.orange)),
+                  ],
+                ),
                 onTap: () {
                   Navigator.of(context).pushNamed(CEquipoScreem.nombre);
                 },
               ),
               ListTile(
-                title: const Text('Unirse a Juego ',
-                    style: TextStyle(color: Colors.orange)),
+                title: Row(
+                  children: [
+                    Icon(Icons.group, color: Colors.orange),
+                    SizedBox(width: 10),
+                    Text('Unirse a Juego ',
+                        style: TextStyle(color: Colors.orange)),
+                  ],
+                ),
                 onTap: () {
                   Navigator.of(context).pushNamed(UnirseJuegoScreem.nombre);
                 },
               ),
               ListTile(
-                title: const Text('Reservar instalaciones ',
-                    style: TextStyle(color: Colors.orange)),
+                title: Row(
+                  children: [
+                    Icon(Icons.calendar_today, color: Colors.orange),
+                    SizedBox(width: 10),
+                    Text('Reservar instalaciones ',
+                        style: TextStyle(color: Colors.orange)),
+                  ],
+                ),
                 onTap: () {
                   Navigator.of(context).pushNamed(ReservarScreem.nombre);
                 },
               ),
               ListTile(
-                title: const Text('Realizar pago ',
-                    style: TextStyle(color: Colors.orange)),
+                title: Row(
+                  children: [
+                    Icon(Icons.payment, color: Colors.orange),
+                    SizedBox(width: 10),
+                    Text('Realizar pago ',
+                        style: TextStyle(color: Colors.orange)),
+                  ],
+                ),
                 onTap: () {
                   Navigator.of(context).pushNamed(PagoScreem.nombre);
                 },
@@ -84,20 +113,22 @@ class _UnirseJuegoScreemState extends State<UnirseJuegoScreem> {
         ),
         body: Column(
           children: [
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Buscar equipo',
-                prefixIcon: Icon(Icons.search),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: TextField(
+                decoration: InputDecoration(
+                  labelText: 'Buscar equipo',
+                  prefixIcon: Icon(Icons.search),
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    _searchQuery = value;
+                  });
+                },
               ),
-              onChanged: (value) {
-                setState(() {
-                  _searchQuery = value;
-                });
-              },
             ),
             Expanded(
-              child:
-                  _buildTeamList(), // Método para construir la lista de equipos
+              child: _buildTeamList(),
             ),
           ],
         ),

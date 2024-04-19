@@ -73,36 +73,65 @@ class _ReservarScreemState extends State<ReservarScreem> {
                 ),
               ),
               ListTile(
-                title:
-                    const Text('Home ', style: TextStyle(color: Colors.orange)),
+                title: Row(
+                  children: [
+                    Icon(Icons.home, color: Colors.orange),
+                    SizedBox(width: 10),
+                    Text('Home ', style: TextStyle(color: Colors.orange)),
+                  ],
+                ),
                 onTap: () {
                   Navigator.of(context).pushNamed(MyHomePage.nombre);
                 },
               ),
               ListTile(
-                title: const Text('Crear equipo ',
-                    style: TextStyle(color: Colors.orange)),
+                title: Row(
+                  children: [
+                    Icon(Icons.sports_soccer, color: Colors.orange),
+                    SizedBox(width: 10),
+                    Text('Crear equipo ',
+                        style: TextStyle(color: Colors.orange)),
+                  ],
+                ),
                 onTap: () {
                   Navigator.of(context).pushNamed(CEquipoScreem.nombre);
                 },
               ),
               ListTile(
-                title: const Text('Unirse a Juego ',
-                    style: TextStyle(color: Colors.orange)),
+                title: Row(
+                  children: [
+                    Icon(Icons.group, color: Colors.orange),
+                    SizedBox(width: 10),
+                    Text('Unirse a Juego ',
+                        style: TextStyle(color: Colors.orange)),
+                  ],
+                ),
                 onTap: () {
                   Navigator.of(context).pushNamed(UnirseJuegoScreem.nombre);
                 },
               ),
               ListTile(
-                title: const Text('Reservar instalaciones ',
-                    style: TextStyle(color: Colors.orange)),
+                title: Row(
+                  children: [
+                    Icon(Icons.calendar_today, color: Colors.orange),
+                    SizedBox(width: 10),
+                    Text('Reservar instalaciones ',
+                        style: TextStyle(color: Colors.orange)),
+                  ],
+                ),
                 onTap: () {
                   Navigator.of(context).pushNamed(ReservarScreem.nombre);
                 },
               ),
               ListTile(
-                title: const Text('Realizar pago ',
-                    style: TextStyle(color: Colors.orange)),
+                title: Row(
+                  children: [
+                    Icon(Icons.payment, color: Colors.orange),
+                    SizedBox(width: 10),
+                    Text('Realizar pago ',
+                        style: TextStyle(color: Colors.orange)),
+                  ],
+                ),
                 onTap: () {
                   Navigator.of(context).pushNamed(PagoScreem.nombre);
                 },
@@ -110,46 +139,48 @@ class _ReservarScreemState extends State<ReservarScreem> {
             ],
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Selecciona la fecha:',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              ElevatedButton(
-                onPressed: () => _selectDate(context),
-                child: Text('Seleccionar fecha'),
-              ),
-              SizedBox(height: 20),
-              Text(
-                'Fecha seleccionada: ${_selectedDate.day}/${_selectedDate.month}/${_selectedDate.year}',
-                style: TextStyle(fontSize: 16),
-              ),
-              SizedBox(height: 20),
-              Text(
-                'Selecciona la hora:',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              ElevatedButton(
-                onPressed: () => _selectTime(context),
-                child: Text('Seleccionar hora'),
-              ),
-              SizedBox(height: 20),
-              Text(
-                'Hora seleccionada: ${_selectedTime.format(context)}',
-                style: TextStyle(fontSize: 16),
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  // Aquí puedes implementar la lógica para completar la reserva
-                },
-                child: Text('Reservar'),
-              ),
-            ],
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  'Selecciona la fecha:',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                ElevatedButton(
+                  onPressed: () => _selectDate(context),
+                  child: Text('Seleccionar fecha'),
+                ),
+                SizedBox(height: 20),
+                Text(
+                  'Fecha seleccionada: ${_selectedDate.day}/${_selectedDate.month}/${_selectedDate.year}',
+                  style: TextStyle(fontSize: 16),
+                ),
+                SizedBox(height: 20),
+                Text(
+                  'Selecciona la hora:',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                ElevatedButton(
+                  onPressed: () => _selectTime(context),
+                  child: Text('Seleccionar hora'),
+                ),
+                SizedBox(height: 20),
+                Text(
+                  'Hora seleccionada: ${_selectedTime.format(context)}',
+                  style: TextStyle(fontSize: 16),
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    // Aquí puedes implementar la lógica para completar la reserva
+                  },
+                  child: Text('Reservar'),
+                ),
+              ],
+            ),
           ),
         ),
       ),
