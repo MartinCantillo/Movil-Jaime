@@ -20,7 +20,7 @@ class MyButton extends StatelessWidget {
           child: Text(
             "Sign In",
             style: TextStyle(
-              color: Colors.white,
+              color: Color.fromARGB(255, 250, 247, 247),
               fontWeight: FontWeight.bold,
               fontSize: 16,
             ),

@@ -25,7 +25,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     //  prefs.ultimapagina = LoginPage.nombre;
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.orange,
       body: SafeArea(
         child: Center(
           child: Column(
@@ -44,9 +44,9 @@ class LoginPage extends StatelessWidget {
 
               // welcome back
               Text(
-                'Welcome!',
+                'Sport Champions',
                 style: TextStyle(
-                  color: Colors.grey[700],
+                  color: Colors.black,
                   fontSize: 16,
                 ),
               ),
@@ -79,7 +79,7 @@ class LoginPage extends StatelessWidget {
                   children: [
                     Text(
                       'Forgot Password?',
-                      style: TextStyle(color: Colors.grey[600]),
+                      style: TextStyle(color: Colors.black),
                     ),
                   ],
                 ),
@@ -104,20 +104,20 @@ class LoginPage extends StatelessWidget {
                     Expanded(
                       child: Divider(
                         thickness: 0.5,
-                        color: Colors.grey[400],
+                        color: Colors.black,
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: Text(
                         'Or continue with',
-                        style: TextStyle(color: Colors.grey[700]),
+                        style: TextStyle(color: Colors.black),
                       ),
                     ),
                     Expanded(
                       child: Divider(
                         thickness: 0.5,
-                        color: Colors.grey[400],
+                        color: Colors.orange,
                       ),
                     ),
                   ],
@@ -148,13 +148,13 @@ class LoginPage extends StatelessWidget {
                 children: [
                   Text(
                     'Not a member?',
-                    style: TextStyle(color: Colors.grey[700]),
+                    style: TextStyle(color: Colors.black),
                   ),
                   const SizedBox(width: 4),
                   const Text(
                     'Register now',
                     style: TextStyle(
-                      color: Colors.blue,
+                      color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

@@ -53,36 +53,64 @@ class _CEquipoScreemState extends State<CEquipoScreem> {
               ),
             ),
             ListTile(
-              title:
-                  const Text('Home ', style: TextStyle(color: Colors.orange)),
+              title: Row(
+                children: [
+                  Icon(Icons.home, color: Colors.orange),
+                  SizedBox(width: 10),
+                  Text('Home ', style: TextStyle(color: Colors.orange)),
+                ],
+              ),
               onTap: () {
                 Navigator.of(context).pushNamed(MyHomePage.nombre);
               },
             ),
             ListTile(
-              title: const Text('Crear equipo ',
-                  style: TextStyle(color: Colors.orange)),
+              title: Row(
+                children: [
+                  Icon(Icons.sports_soccer, color: Colors.orange),
+                  SizedBox(width: 10),
+                  Text('Crear equipo ', style: TextStyle(color: Colors.orange)),
+                ],
+              ),
               onTap: () {
                 Navigator.of(context).pushNamed(CEquipoScreem.nombre);
               },
             ),
             ListTile(
-              title: const Text('Unirse a Juego ',
-                  style: TextStyle(color: Colors.orange)),
+              title: Row(
+                children: [
+                  Icon(Icons.group, color: Colors.orange),
+                  SizedBox(width: 10),
+                  Text('Unirse a Juego ',
+                      style: TextStyle(color: Colors.orange)),
+                ],
+              ),
               onTap: () {
                 Navigator.of(context).pushNamed(UnirseJuegoScreem.nombre);
               },
             ),
             ListTile(
-              title: const Text('Reservar instalaciones ',
-                  style: TextStyle(color: Colors.orange)),
+              title: Row(
+                children: [
+                  Icon(Icons.calendar_today, color: Colors.orange),
+                  SizedBox(width: 10),
+                  Text('Reservar instalaciones ',
+                      style: TextStyle(color: Colors.orange)),
+                ],
+              ),
               onTap: () {
                 Navigator.of(context).pushNamed(ReservarScreem.nombre);
               },
             ),
             ListTile(
-              title: const Text('Realizar pago ',
-                  style: TextStyle(color: Colors.orange)),
+              title: Row(
+                children: [
+                  Icon(Icons.payment, color: Colors.orange),
+                  SizedBox(width: 10),
+                  Text('Realizar pago ',
+                      style: TextStyle(color: Colors.orange)),
+                ],
+              ),
               onTap: () {
                 Navigator.of(context).pushNamed(PagoScreem.nombre);
               },
@@ -96,7 +124,10 @@ class _CEquipoScreemState extends State<CEquipoScreem> {
             child: Column(
               children: [
                 TextFormField(
-                  decoration: InputDecoration(labelText: 'Deporte'),
+                  decoration: InputDecoration(
+                    labelText: 'Deporte',
+                    prefixIcon: Icon(Icons.sports_soccer),
+                  ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Por favor ingresa el deporte';
@@ -109,7 +140,10 @@ class _CEquipoScreemState extends State<CEquipoScreem> {
                 ),
                 SizedBox(height: 20),
                 TextFormField(
-                  decoration: InputDecoration(labelText: 'Fecha'),
+                  decoration: InputDecoration(
+                    labelText: 'Fecha',
+                    prefixIcon: Icon(Icons.calendar_today),
+                  ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Por favor ingresa la fecha';
@@ -135,7 +169,10 @@ class _CEquipoScreemState extends State<CEquipoScreem> {
                 ),
                 SizedBox(height: 20),
                 TextFormField(
-                  decoration: InputDecoration(labelText: 'Hora'),
+                  decoration: InputDecoration(
+                    labelText: 'Hora',
+                    prefixIcon: Icon(Icons.access_time),
+                  ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Por favor ingresa la hora';
@@ -159,7 +196,10 @@ class _CEquipoScreemState extends State<CEquipoScreem> {
                 ),
                 SizedBox(height: 20),
                 TextFormField(
-                  decoration: InputDecoration(labelText: 'Lugar'),
+                  decoration: InputDecoration(
+                    labelText: 'Lugar',
+                    prefixIcon: Icon(Icons.location_on),
+                  ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Por favor ingresa el lugar';
@@ -173,7 +213,9 @@ class _CEquipoScreemState extends State<CEquipoScreem> {
                 SizedBox(height: 20),
                 TextFormField(
                   decoration: InputDecoration(
-                      labelText: 'Cantidad máxima de jugadores'),
+                    labelText: 'Cantidad máxima de jugadores',
+                    prefixIcon: Icon(Icons.person_add),
+                  ),
                   keyboardType: TextInputType.number,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
