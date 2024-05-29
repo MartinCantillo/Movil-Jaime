@@ -18,23 +18,7 @@ class Usuario {
     this.comentarios,
   });
 
-  Usuario copyWith({
-    ValueGetter<int?>? id,
-    ValueGetter<String?>? nombre,
-    ValueGetter<String?>? email,
-    ValueGetter<String?>? contrasena,
-    ValueGetter<double?>? puntuacion,
-    ValueGetter<List<String>?>? comentarios,
-  }) {
-    return Usuario(
-      id: id != null ? id() : this.id,
-      nombre: nombre != null ? nombre() : this.nombre,
-      email: email != null ? email() : this.email,
-      contrasena: contrasena != null ? contrasena() : this.contrasena,
-      puntuacion: puntuacion != null ? puntuacion() : this.puntuacion,
-      comentarios: comentarios != null ? comentarios() : this.comentarios,
-    );
-  }
+  
 
   Map<String, dynamic> toMap() {
     return {
