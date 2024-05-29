@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:project/View/Screem/CEquipoScreem.dart';
-import 'package:project/View/Screem/MyHomePage.dart';
-import 'package:project/View/Screem/PagoScreem.dart';
-import 'package:project/View/Screem/UnirseJuegoScreem.dart';
+import 'package:project/Data/InstalacionDeportivaData.dart';
+import 'package:project/Data/ReservaData.dart';
+import 'package:project/Model/InstalacionDeportiva.dart';
+import 'package:project/Model/Reserva.dart';
 import 'package:project/View/Widget/AppBarW.dart';
 import 'package:project/View/Widget/drawer.dart';
 
@@ -50,53 +50,119 @@ class _ReservarScreemState extends State<ReservarScreem> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBarW(title: "Reservar instalacion"),
-        drawer:  DrawerW(user: "Martin",correo: "Martin@gmail.com",),
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  'Selecciona la fecha:',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                ElevatedButton(
-                  onPressed: () => _selectDate(context),
-                  child: Text('Seleccionar fecha'),
-                ),
-                SizedBox(height: 20),
-                Text(
-                  'Fecha seleccionada: ${_selectedDate.day}/${_selectedDate.month}/${_selectedDate.year}',
-                  style: TextStyle(fontSize: 16),
-                ),
-                SizedBox(height: 20),
-                Text(
-                  'Selecciona la hora:',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                ElevatedButton(
-                  onPressed: () => _selectTime(context),
-                  child: Text('Seleccionar hora'),
-                ),
-                SizedBox(height: 20),
-                Text(
-                  'Hora seleccionada: ${_selectedTime.format(context)}',
-                  style: TextStyle(fontSize: 16),
-                ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    // Aquí puedes implementar la lógica para completar la reserva
-                  },
-                  child: Text('Reservar'),
-                ),
-              ],
+        appBar: AppBarW(title: 'Reservar instalación',),
+        body: _buildFacilityList(),
+        drawer: DrawerW(user: "Martin",correo: "Martin@gmail.com",),
+      ),
+    );
+  }
+Widget _buildFacilityList() {
+  final List<InstalacionDeportiva> availableFacilities =
+      instalacionesDeportivas
+          .where((instalacion) => instalacion.disponibilidad == true)
+          .toList();
+
+  return GridView.builder(
+    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 2,
+      crossAxisSpacing: 16,
+      mainAxisSpacing: 16,
+    ),
+    itemCount: availableFacilities.length,
+    itemBuilder: (context, index) {
+      final instalacion = availableFacilities[index];
+      return InkWell(
+        onTap: () {
+          _showReservationDialog(context, instalacion);
+        },
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(54),
+          ),
+          elevation: 80,
+          shadowColor: Colors.blue, 
+          child: ListTile(
+            leading: Icon(Icons.sports), 
+            title: Text(
+              'Instalacion : ${instalacion.nombreInstalacion ?? ''}',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            subtitle: Text(
+              'Tipo : ${instalacion.tipo ?? ''}',
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
         ),
-      ),
+      );
+    },
+  );
+}
+
+
+
+  void _showReservationDialog(
+      BuildContext context, InstalacionDeportiva instalacion) {
+    String codigo = '';
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Confirmar reserva'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Instalación: ${instalacion.nombreInstalacion}'),
+              SizedBox(height: 8),
+              Text('Tipo: ${instalacion.tipo}'),
+              SizedBox(height: 8),
+              Text(
+                  'Fecha: ${_selectedDate.day}/${_selectedDate.month}/${_selectedDate.year}'),
+              SizedBox(height: 8),
+              Text('Hora: ${_selectedTime.format(context)}'),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Cancelar'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                _reserveFacility(instalacion);
+                Navigator.pop(context);
+              },
+              child: Text('Reservar'),
+            ),
+          ],
+        );
+      },
     );
+  }
+
+  void _reserveFacility(InstalacionDeportiva instalacion) {
+    final reserva = Reserva(
+      id: reservas.length + 1,
+      usuarioId: 1, 
+      instalacionId: instalacion.id!,
+      fecha: _selectedDate,
+      horaInicio: DateTime(_selectedDate.year, _selectedDate.month,
+          _selectedDate.day, _selectedTime.hour, _selectedTime.minute),
+      horaFin: DateTime(_selectedDate.year, _selectedDate.month,
+          _selectedDate.day, _selectedTime.hour, _selectedTime.minute)
+          .add(Duration(hours: 1)),
+      estadoPago: false,
+    );
+
+    setState(() {
+      reservas.add(reserva);
+      instalacion.disponibilidad = false;
+    });
+
+  
+    print('Reserva realizada: $reserva');
   }
 }
