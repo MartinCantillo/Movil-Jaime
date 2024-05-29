@@ -121,8 +121,8 @@ class _CEquipoScreemState extends State<CEquipoScreem> {
                       onPressed: _crearEquipo,
                       child: Text('Crear Equipo'),
                       style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 40, vertical: 15),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                       ),
                     ),
                   ),
@@ -142,14 +142,15 @@ class _CEquipoScreemState extends State<CEquipoScreem> {
         id: equipos.length + 1,
         nombreDeporte: _deporte,
         fecha: _fecha,
-        hora: DateTime(_fecha.year, _fecha.month, _fecha.day, _hora.hour, _hora.minute),
+        hora: DateTime(
+            _fecha.year, _fecha.month, _fecha.day, _hora.hour, _hora.minute),
         lugar: _lugar,
         creadorId: _creadorId,
         jugadoresNecesarios: _maxJugadores,
         buscajugadores: _buscaJugadores,
-        jugadoresIds: [], 
+        jugadoresIds: [],
       );
-      equipos.add(nuevoEquipo); 
+      equipos.add(nuevoEquipo);
       print('Equipo creado: $nuevoEquipo');
     }
   }

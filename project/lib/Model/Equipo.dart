@@ -4,6 +4,7 @@ import 'dart:convert';
 class Equipo {
   int? id;
   String? nombreDeporte;
+  String? nombreEquipo;
   DateTime? fecha;
   DateTime? hora;
   String? lugar;
@@ -14,6 +15,7 @@ class Equipo {
   Equipo({
     this.id,
     this.nombreDeporte,
+    this.nombreEquipo,
     this.fecha,
     this.hora,
     this.lugar,
@@ -27,6 +29,7 @@ class Equipo {
     return {
       'id': id,
       'nombreDeporte': nombreDeporte,
+      'nombreEquipo': nombreEquipo,
       'fecha': fecha?.millisecondsSinceEpoch,
       'hora': hora?.millisecondsSinceEpoch,
       'lugar': lugar,
@@ -41,6 +44,7 @@ class Equipo {
     return Equipo(
       id: map['id']?.toInt(),
       nombreDeporte: map['nombreDeporte'],
+      nombreEquipo: map['nombreEquipo'],
       fecha: map['fecha'] != null
           ? DateTime.fromMillisecondsSinceEpoch(map['fecha'])
           : null,
@@ -61,6 +65,6 @@ class Equipo {
 
   @override
   String toString() {
-    return 'Equipo(id: $id, nombreDeporte: $nombreDeporte, fecha: $fecha, hora: $hora, lugar: $lugar, creadorId: $creadorId, jugadoresNecesarios: $jugadoresNecesarios, buscajugadores: $buscajugadores, jugadoresIds: $jugadoresIds)';
+    return 'Equipo(id: $id, nombreDeporte: $nombreDeporte, nombreEquipo: $nombreEquipo, fecha: $fecha, hora: $hora, lugar: $lugar, creadorId: $creadorId, jugadoresNecesarios: $jugadoresNecesarios, buscajugadores: $buscajugadores, jugadoresIds: $jugadoresIds)';
   }
 }

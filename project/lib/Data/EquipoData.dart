@@ -4,6 +4,7 @@ final List<Equipo> equipos = [
   Equipo(
     id: 1,
     nombreDeporte: 'Fútbol',
+    nombreEquipo: 'Junior FC',
     fecha: DateTime.now(),
     hora: DateTime.now(),
     lugar: 'Cancha 1',
@@ -15,6 +16,7 @@ final List<Equipo> equipos = [
   Equipo(
     id: 2,
     nombreDeporte: 'Baloncesto',
+    nombreEquipo: 'Los toñistas Humor FC',
     fecha: DateTime.now(),
     hora: DateTime.now(),
     lugar: 'Cancha 2',
@@ -26,6 +28,7 @@ final List<Equipo> equipos = [
   Equipo(
     id: 20,
     nombreDeporte: 'Voleibol',
+    nombreEquipo: 'Riveristas FC',
     fecha: DateTime.now(),
     hora: DateTime.now(),
     lugar: 'Cancha 3',

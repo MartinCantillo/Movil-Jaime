@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project/Data/EquipoData.dart';
+import 'package:project/Model/Equipo.dart';
 import 'package:project/View/Widget/AppBarW.dart';
 import 'package:project/View/Widget/drawer.dart';
 
@@ -12,64 +14,108 @@ class UnirseJuegoScreem extends StatefulWidget {
 }
 
 class _UnirseJuegoScreemState extends State<UnirseJuegoScreem> {
-  late String _searchQuery = '';
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBarW(title: "Unirse a un juego"),
-        drawer: DrawerW(
-          user: "Martin",
-          correo: "Martin@gmail.com",
-        ),
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  labelText: 'Buscar equipo',
-                  prefixIcon: Icon(Icons.search),
-                ),
-                onChanged: (value) {
-                  setState(() {
-                    _searchQuery = value;
-                  });
-                },
-              ),
-            ),
-            Expanded(
-              child: _buildTeamList(),
-            ),
-          ],
-        ),
+        drawer: DrawerW(user: "Martin", correo: "Martin@gmail.com"),
+        body: _buildTeamList(),
       ),
     );
   }
 
-  // Método para construir la lista de equipos según el criterio de búsqueda
   Widget _buildTeamList() {
-    // Aquí puedes implementar la lógica para filtrar los equipos según el criterio de búsqueda
-    // y luego construir una lista de widgets que representen los equipos encontrados.
-    // Por ejemplo:
-    List<Widget> teams =
-        []; // Aquí deberías llenar esta lista con los widgets de los equipos encontrados.
+    final List<Equipo> filteredTeams =
+        equipos.where((equipo) => equipo.buscajugadores == true).toList();
 
-    // Ejemplo de cómo agregar un widget de equipo a la lista:
-    teams.add(
-      ListTile(
-        title: Text('Nombre del equipo'),
-        subtitle: Text('Descripción del equipo'),
-        onTap: () {
-          // Aquí puedes definir qué hacer cuando se seleccione un equipo de la lista.
-        },
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: GridView.count(
+        crossAxisCount: 2,
+        mainAxisSpacing: 16,
+        crossAxisSpacing: 16,
+        children: filteredTeams.map((equipo) {
+          return InkWell(
+            onTap: () {
+              _showInputDialog(context, equipo);
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(54),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.blue.withOpacity(0.50),
+                    spreadRadius: 3,
+                    blurRadius: 7,
+                    offset: Offset(0, 20),
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    equipo.nombreEquipo ?? '',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    'Deporte: ${equipo.nombreDeporte ?? ''}',
+                    style: TextStyle(fontSize: 14),
+                  ),
+                  SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () {
+                      _showInputDialog(context, equipo);
+                    },
+                    child: Text('Unirse'),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }).toList(),
       ),
     );
+  }
 
-    // Devolver la lista de widgets de equipos
-    return ListView(
-      children: teams,
+  void _showInputDialog(BuildContext context, Equipo equipo) {
+    String codigo = '';
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Ingresar código'),
+          content: TextField(
+            onChanged: (value) => codigo = value,
+            decoration: InputDecoration(
+              hintText: 'Ingrese el código',
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Cancelar'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                print(
+                    'Código ingresado para el equipo con ID: ${equipo.id}: $codigo');
+                Navigator.pop(context);
+              },
+              child: Text('Guardar'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
