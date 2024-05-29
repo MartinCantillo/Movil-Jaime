@@ -54,17 +54,17 @@ class _ReservarScreemState extends State<ReservarScreem> {
             style: TextStyle(color: Colors.black),
           ),
           centerTitle: true,
-          backgroundColor: Colors.orange,
+          backgroundColor: Colors.blue,
         ),
         drawer: Drawer(
-          backgroundColor: Colors.black,
-          shadowColor: Colors.white,
+          backgroundColor: Colors.white,
+          shadowColor: Colors.black,
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
               const DrawerHeader(
                 decoration: BoxDecoration(
-                  color: Colors.orange,
+                  color: Colors.blue,
                 ),
                 child: Icon(
                   Icons.person,
@@ -75,9 +75,9 @@ class _ReservarScreemState extends State<ReservarScreem> {
               ListTile(
                 title: Row(
                   children: [
-                    Icon(Icons.home, color: Colors.orange),
+                    Icon(Icons.home, color: Colors.black),
                     SizedBox(width: 10),
-                    Text('Home ', style: TextStyle(color: Colors.orange)),
+                    Text('Home ', style: TextStyle(color: Colors.black)),
                   ],
                 ),
                 onTap: () {
@@ -87,10 +87,10 @@ class _ReservarScreemState extends State<ReservarScreem> {
               ListTile(
                 title: Row(
                   children: [
-                    Icon(Icons.sports_soccer, color: Colors.orange),
+                    Icon(Icons.sports_soccer, color: Colors.black),
                     SizedBox(width: 10),
                     Text('Crear equipo ',
-                        style: TextStyle(color: Colors.orange)),
+                        style: TextStyle(color: Colors.black)),
                   ],
                 ),
                 onTap: () {
@@ -100,10 +100,10 @@ class _ReservarScreemState extends State<ReservarScreem> {
               ListTile(
                 title: Row(
                   children: [
-                    Icon(Icons.group, color: Colors.orange),
+                    Icon(Icons.group, color: Colors.black),
                     SizedBox(width: 10),
                     Text('Unirse a Juego ',
-                        style: TextStyle(color: Colors.orange)),
+                        style: TextStyle(color: Colors.black)),
                   ],
                 ),
                 onTap: () {
@@ -113,10 +113,10 @@ class _ReservarScreemState extends State<ReservarScreem> {
               ListTile(
                 title: Row(
                   children: [
-                    Icon(Icons.calendar_today, color: Colors.orange),
+                    Icon(Icons.calendar_today, color: Colors.black),
                     SizedBox(width: 10),
                     Text('Reservar instalaciones ',
-                        style: TextStyle(color: Colors.orange)),
+                        style: TextStyle(color: Colors.black)),
                   ],
                 ),
                 onTap: () {
@@ -126,10 +126,10 @@ class _ReservarScreemState extends State<ReservarScreem> {
               ListTile(
                 title: Row(
                   children: [
-                    Icon(Icons.payment, color: Colors.orange),
+                    Icon(Icons.payment, color: Colors.black),
                     SizedBox(width: 10),
                     Text('Realizar pago ',
-                        style: TextStyle(color: Colors.orange)),
+                        style: TextStyle(color: Colors.black)),
                   ],
                 ),
                 onTap: () {

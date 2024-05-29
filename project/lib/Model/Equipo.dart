@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+
 class Equipo {
   int? id;
   String? nombreDeporte;
@@ -8,6 +9,7 @@ class Equipo {
   String? lugar;
   int? creadorId;
   int? jugadoresNecesarios;
+  bool? buscajugadores; // true o false
   List<int>? jugadoresIds;
   Equipo({
     this.id,
@@ -17,6 +19,7 @@ class Equipo {
     this.lugar,
     this.creadorId,
     this.jugadoresNecesarios,
+    this.buscajugadores,
     this.jugadoresIds,
   });
 
@@ -29,6 +32,7 @@ class Equipo {
       'lugar': lugar,
       'creadorId': creadorId,
       'jugadoresNecesarios': jugadoresNecesarios,
+      'buscajugadores': buscajugadores,
       'jugadoresIds': jugadoresIds,
     };
   }
@@ -46,6 +50,7 @@ class Equipo {
       lugar: map['lugar'],
       creadorId: map['creadorId']?.toInt(),
       jugadoresNecesarios: map['jugadoresNecesarios']?.toInt(),
+      buscajugadores: map['buscajugadores'],
       jugadoresIds: List<int>.from(map['jugadoresIds']),
     );
   }
@@ -56,6 +61,6 @@ class Equipo {
 
   @override
   String toString() {
-    return 'Equipo(id: $id, nombreDeporte: $nombreDeporte, fecha: $fecha, hora: $hora, lugar: $lugar, creadorId: $creadorId, jugadoresNecesarios: $jugadoresNecesarios, jugadoresIds: $jugadoresIds)';
+    return 'Equipo(id: $id, nombreDeporte: $nombreDeporte, fecha: $fecha, hora: $hora, lugar: $lugar, creadorId: $creadorId, jugadoresNecesarios: $jugadoresNecesarios, buscajugadores: $buscajugadores, jugadoresIds: $jugadoresIds)';
   }
 }

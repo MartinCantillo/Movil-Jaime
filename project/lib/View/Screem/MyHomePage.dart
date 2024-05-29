@@ -3,8 +3,8 @@ import 'package:project/View/Screem/CEquipoScreem.dart';
 import 'package:project/View/Screem/PagoScreem.dart';
 import 'package:project/View/Screem/ReservarScreem.dart';
 import 'package:project/View/Screem/UnirseJuegoScreem.dart';
-import 'ppp.dart'; // Importa el archivo ppp.dart
-import 'mmmm.dart'; // Importa el archivo mmmm.dart
+import 'ppp.dart';
+import 'mmmm.dart'; 
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class _MyHomePageState extends State<MyHomePage> {
           style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
-        backgroundColor: Colors.orange,
+        backgroundColor: Colors.blue,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20.0),
@@ -91,12 +91,12 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       drawer: Drawer(
         child: Container(
-          color: Colors.black,
+          color: Colors.white,
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
               const DrawerHeader(
-                decoration: BoxDecoration(color: Colors.orange),
+                decoration: BoxDecoration(color: Colors.blue),
                 child: Icon(
                   Icons.person,
                   size: 100,
@@ -123,11 +123,11 @@ class _MyHomePageState extends State<MyHomePage> {
     return ListTile(
       title: Text(
         title,
-        style: TextStyle(color: Colors.orange),
+        style: TextStyle(color: Colors.black),
       ),
       leading: Icon(
         icon,
-        color: Colors.orange,
+        color: Colors.black,
       ),
       onTap: () {
         Navigator.of(context).pushNamed(routeName);
