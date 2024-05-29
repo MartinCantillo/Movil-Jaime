@@ -3,6 +3,7 @@ import 'package:project/View/Screem/CEquipoScreem.dart';
 import 'package:project/View/Screem/MyHomePage.dart';
 import 'package:project/View/Screem/PagoScreem.dart';
 import 'package:project/View/Screem/UnirseJuegoScreem.dart';
+import 'package:project/View/Widget/AppBarW.dart';
 import 'package:project/View/Widget/drawer.dart';
 
 class ReservarScreem extends StatefulWidget {
@@ -49,14 +50,7 @@ class _ReservarScreemState extends State<ReservarScreem> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            "Reservar instalación",
-            style: TextStyle(color: Colors.black),
-          ),
-          centerTitle: true,
-          backgroundColor: Colors.blue,
-        ),
+        appBar: AppBarW(title: "Reservar instalacion"),
         drawer:  DrawerW(user: "Martin",correo: "Martin@gmail.com",),
         body: Center(
           child: Padding(

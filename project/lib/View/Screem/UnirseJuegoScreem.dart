@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project/View/Screem/CEquipoScreem.dart';
-import 'package:project/View/Screem/MyHomePage.dart';
-import 'package:project/View/Screem/PagoScreem.dart';
-import 'package:project/View/Screem/ReservarScreem.dart';
+import 'package:project/View/Widget/AppBarW.dart';
 import 'package:project/View/Widget/drawer.dart';
 
 class UnirseJuegoScreem extends StatefulWidget {
@@ -21,15 +18,11 @@ class _UnirseJuegoScreemState extends State<UnirseJuegoScreem> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            "Unirse a un juego",
-            style: TextStyle(color: Colors.black),
-          ),
-          centerTitle: true,
-          backgroundColor: Colors.blue,
+        appBar: AppBarW(title: "Unirse a un juego"),
+        drawer: DrawerW(
+          user: "Martin",
+          correo: "Martin@gmail.com",
         ),
-        drawer:  DrawerW(user: "Martin",correo: "Martin@gmail.com",),
         body: Column(
           children: [
             Padding(

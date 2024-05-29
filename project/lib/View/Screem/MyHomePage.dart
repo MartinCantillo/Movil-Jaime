@@ -3,6 +3,7 @@ import 'package:project/View/Screem/CEquipoScreem.dart';
 import 'package:project/View/Screem/PagoScreem.dart';
 import 'package:project/View/Screem/ReservarScreem.dart';
 import 'package:project/View/Screem/UnirseJuegoScreem.dart';
+import 'package:project/View/Widget/AppBarW.dart';
 import 'package:project/View/Widget/drawer.dart';
 import 'ppp.dart';
 import 'mmmm.dart'; 
@@ -19,14 +20,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Bienvenido",
-          style: TextStyle(color: Colors.black),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.blue,
-      ),
+      appBar: AppBarW(title: "Bienvenido"),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20.0),
         child: Column(

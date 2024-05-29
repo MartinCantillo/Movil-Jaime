@@ -3,6 +3,7 @@ import 'package:project/View/Screem/CEquipoScreem.dart';
 import 'package:project/View/Screem/MyHomePage.dart';
 import 'package:project/View/Screem/ReservarScreem.dart';
 import 'package:project/View/Screem/UnirseJuegoScreem.dart';
+import 'package:project/View/Widget/AppBarW.dart';
 import 'package:project/View/Widget/drawer.dart';
 
 class PagoScreem extends StatefulWidget {
@@ -24,14 +25,7 @@ class _PagoScreemState extends State<PagoScreem> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            "Realizar pago",
-            style: TextStyle(color: Colors.black),
-          ),
-          centerTitle: true,
-          backgroundColor: Colors.orange,
-        ),
+        appBar:AppBarW(title: "Realizar pago"),
         drawer:  DrawerW(user: "Martin",correo: "Martin@gmail.com",),
         body: _processingPayment
             ? Center(
