@@ -3,6 +3,7 @@ import 'package:project/View/Screem/CEquipoScreem.dart';
 import 'package:project/View/Screem/MyHomePage.dart';
 import 'package:project/View/Screem/ReservarScreem.dart';
 import 'package:project/View/Screem/UnirseJuegoScreem.dart';
+import 'package:project/View/Widget/drawer.dart';
 
 class PagoScreem extends StatefulWidget {
   const PagoScreem({Key? key}) : super(key: key);
@@ -31,89 +32,7 @@ class _PagoScreemState extends State<PagoScreem> {
           centerTitle: true,
           backgroundColor: Colors.orange,
         ),
-        drawer: Drawer(
-          backgroundColor: Colors.black,
-          shadowColor: Colors.white,
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              const DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.orange,
-                ),
-                child: Icon(
-                  Icons.person,
-                  size: 100,
-                  color: Colors.black,
-                ),
-              ),
-              ListTile(
-                title: Row(
-                  children: [
-                    Icon(Icons.home, color: Colors.orange),
-                    SizedBox(width: 10),
-                    Text('Home ', style: TextStyle(color: Colors.orange)),
-                  ],
-                ),
-                onTap: () {
-                  Navigator.of(context).pushNamed(MyHomePage.nombre);
-                },
-              ),
-              ListTile(
-                title: Row(
-                  children: [
-                    Icon(Icons.sports_soccer, color: Colors.orange),
-                    SizedBox(width: 10),
-                    Text('Crear equipo ',
-                        style: TextStyle(color: Colors.orange)),
-                  ],
-                ),
-                onTap: () {
-                  Navigator.of(context).pushNamed(CEquipoScreem.nombre);
-                },
-              ),
-              ListTile(
-                title: Row(
-                  children: [
-                    Icon(Icons.group, color: Colors.orange),
-                    SizedBox(width: 10),
-                    Text('Unirse a Juego ',
-                        style: TextStyle(color: Colors.orange)),
-                  ],
-                ),
-                onTap: () {
-                  Navigator.of(context).pushNamed(UnirseJuegoScreem.nombre);
-                },
-              ),
-              ListTile(
-                title: Row(
-                  children: [
-                    Icon(Icons.calendar_today, color: Colors.orange),
-                    SizedBox(width: 10),
-                    Text('Reservar instalaciones ',
-                        style: TextStyle(color: Colors.orange)),
-                  ],
-                ),
-                onTap: () {
-                  Navigator.of(context).pushNamed(ReservarScreem.nombre);
-                },
-              ),
-              ListTile(
-                title: Row(
-                  children: [
-                    Icon(Icons.payment, color: Colors.orange),
-                    SizedBox(width: 10),
-                    Text('Realizar pago ',
-                        style: TextStyle(color: Colors.orange)),
-                  ],
-                ),
-                onTap: () {
-                  Navigator.of(context).pushNamed(PagoScreem.nombre);
-                },
-              ),
-            ],
-          ),
-        ),
+        drawer:  DrawerW(user: "Martin",correo: "Martin@gmail.com",),
         body: _processingPayment
             ? Center(
                 child: CircularProgressIndicator(),

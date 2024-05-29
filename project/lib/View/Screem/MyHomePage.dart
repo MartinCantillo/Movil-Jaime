@@ -3,6 +3,7 @@ import 'package:project/View/Screem/CEquipoScreem.dart';
 import 'package:project/View/Screem/PagoScreem.dart';
 import 'package:project/View/Screem/ReservarScreem.dart';
 import 'package:project/View/Screem/UnirseJuegoScreem.dart';
+import 'package:project/View/Widget/drawer.dart';
 import 'ppp.dart';
 import 'mmmm.dart'; 
 
@@ -89,49 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      drawer: Drawer(
-        child: Container(
-          color: Colors.white,
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              const DrawerHeader(
-                decoration: BoxDecoration(color: Colors.blue),
-                child: Icon(
-                  Icons.person,
-                  size: 100,
-                  color: Colors.black,
-                ),
-              ),
-              _buildDrawerItem('Home', MyHomePage.nombre, Icons.home),
-              _buildDrawerItem(
-                  'Crear equipo', CEquipoScreem.nombre, Icons.group_add),
-              _buildDrawerItem('Unirse a Juego', UnirseJuegoScreem.nombre,
-                  Icons.sports_soccer),
-              _buildDrawerItem('Reservar instalaciones', ReservarScreem.nombre,
-                  Icons.sports_basketball),
-              _buildDrawerItem(
-                  'Realizar pago', PagoScreem.nombre, Icons.payment),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildDrawerItem(String title, String routeName, IconData icon) {
-    return ListTile(
-      title: Text(
-        title,
-        style: TextStyle(color: Colors.black),
-      ),
-      leading: Icon(
-        icon,
-        color: Colors.black,
-      ),
-      onTap: () {
-        Navigator.of(context).pushNamed(routeName);
-      },
+      drawer:  DrawerW(user: "Martin",correo: "Martin@gmail.com",),
     );
   }
 }

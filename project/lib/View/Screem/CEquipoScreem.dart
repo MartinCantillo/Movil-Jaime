@@ -3,6 +3,7 @@ import 'package:project/View/Screem/MyHomePage.dart';
 import 'package:project/View/Screem/PagoScreem.dart';
 import 'package:project/View/Screem/ReservarScreem.dart';
 import 'package:project/View/Screem/UnirseJuegoScreem.dart';
+import 'package:project/View/Widget/drawer.dart';
 
 class CEquipoScreem extends StatefulWidget {
   const CEquipoScreem({Key? key});
@@ -40,82 +41,22 @@ class _CEquipoScreemState extends State<CEquipoScreem> {
           ),
           centerTitle: true,
           backgroundColor: Colors.blue,
+          actions: [
+            IconButton(
+              icon: Icon(Icons.notifications),
+              onPressed: () {
+                // Manejar notificaciones
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.settings),
+              onPressed: () {
+                // Manejar configuración
+              },
+            ),
+          ],
         ),
-        drawer: Drawer(
-          backgroundColor: Colors.white,
-          child: ListView(padding: EdgeInsets.zero, children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Icon(
-                Icons.person,
-                size: 100,
-                color: Colors.black,
-              ),
-            ),
-            ListTile(
-              title: Row(
-                children: [
-                  Icon(Icons.home, color: Colors.black),
-                  SizedBox(width: 10),
-                  Text('Home', style: TextStyle(color: Colors.black)),
-                ],
-              ),
-              onTap: () {
-                Navigator.of(context).pushNamed(MyHomePage.nombre);
-              },
-            ),
-            ListTile(
-              title: Row(
-                children: [
-                  Icon(Icons.sports_soccer, color: Colors.black),
-                  SizedBox(width: 10),
-                  Text('Crear equipo', style: TextStyle(color: Colors.black)),
-                ],
-              ),
-              onTap: () {
-                Navigator.of(context).pushNamed(CEquipoScreem.nombre);
-              },
-            ),
-            ListTile(
-              title: Row(
-                children: [
-                  Icon(Icons.group, color: Colors.black),
-                  SizedBox(width: 10),
-                  Text('Unirse a Juego', style: TextStyle(color: Colors.black)),
-                ],
-              ),
-              onTap: () {
-                Navigator.of(context).pushNamed(UnirseJuegoScreem.nombre);
-              },
-            ),
-            ListTile(
-              title: Row(
-                children: [
-                  Icon(Icons.calendar_today, color: Colors.black),
-                  SizedBox(width: 10),
-                  Text('Reservar instalaciones', style: TextStyle(color: Colors.black)),
-                ],
-              ),
-              onTap: () {
-                Navigator.of(context).pushNamed(ReservarScreem.nombre);
-              },
-            ),
-            ListTile(
-              title: Row(
-                children: [
-                  Icon(Icons.payment, color: Colors.black),
-                  SizedBox(width: 10),
-                  Text('Realizar pago', style: TextStyle(color: Colors.black)),
-                ],
-              ),
-              onTap: () {
-                Navigator.of(context).pushNamed(PagoScreem.nombre);
-              },
-            ),
-          ]),
-        ),
+        drawer:DrawerW(user: "Martin",correo: "Martin@gmail.com",),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Form(
@@ -124,14 +65,12 @@ class _CEquipoScreemState extends State<CEquipoScreem> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  
                   SizedBox(height: 10),
                   _buildTextField(
                     labelText: 'Deporte',
                     prefixIcon: Icons.sports_soccer,
                     onSaved: (value) => _deporte = value!,
-                    validator: (value) =>
-                        value!.isEmpty ? 'Por favor ingresa el deporte' : null,
+                    validator: (value) => value!.isEmpty ? 'Por favor ingresa el deporte' : null,
                   ),
                   SizedBox(height: 10),
                   _buildDatePicker(
@@ -162,8 +101,7 @@ class _CEquipoScreemState extends State<CEquipoScreem> {
                     labelText: 'Lugar',
                     prefixIcon: Icons.location_on,
                     onSaved: (value) => _lugar = value!,
-                    validator: (value) =>
-                        value!.isEmpty ? 'Por favor ingresa el lugar' : null,
+                    validator: (value) => value!.isEmpty ? 'Por favor ingresa el lugar' : null,
                   ),
                   SizedBox(height: 10),
                   _buildTextField(
@@ -171,8 +109,7 @@ class _CEquipoScreemState extends State<CEquipoScreem> {
                     prefixIcon: Icons.person,
                     keyboardType: TextInputType.number,
                     onSaved: (value) => _creadorId = int.parse(value!),
-                    validator: (value) =>
-                        value!.isEmpty ? 'Por favor ingresa el ID del creador' : null,
+                    validator: (value) => value!.isEmpty ? 'Por favor ingresa el ID del creador' : null,
                   ),
                   SizedBox(height: 10),
                   _buildTextField(
@@ -221,6 +158,8 @@ class _CEquipoScreemState extends State<CEquipoScreem> {
       ),
     );
   }
+
+
 
   Widget _buildTextField({
     required String labelText,
