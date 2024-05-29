@@ -7,6 +7,7 @@ import 'package:project/View/Screem/UnirseJuegoScreem.dart';
 class CEquipoScreem extends StatefulWidget {
   const CEquipoScreem({Key? key});
   static const String nombre = 'CEquipoScreem';
+
   @override
   State<CEquipoScreem> createState() => _CEquipoScreemState();
 }
@@ -17,7 +18,9 @@ class _CEquipoScreemState extends State<CEquipoScreem> {
   late DateTime _fecha;
   late TimeOfDay _hora;
   late String _lugar;
+  late int _creadorId;
   late int _maxJugadores;
+  bool _buscaJugadores = false;
 
   @override
   void initState() {
@@ -33,14 +36,13 @@ class _CEquipoScreemState extends State<CEquipoScreem> {
         appBar: AppBar(
           title: const Text(
             "Crear equipo",
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
           backgroundColor: Colors.blue,
         ),
         drawer: Drawer(
           backgroundColor: Colors.white,
-          shadowColor: Colors.black,
           child: ListView(padding: EdgeInsets.zero, children: [
             const DrawerHeader(
               decoration: BoxDecoration(
@@ -57,7 +59,7 @@ class _CEquipoScreemState extends State<CEquipoScreem> {
                 children: [
                   Icon(Icons.home, color: Colors.black),
                   SizedBox(width: 10),
-                  Text('Home ', style: TextStyle(color: Colors.black)),
+                  Text('Home', style: TextStyle(color: Colors.black)),
                 ],
               ),
               onTap: () {
@@ -69,7 +71,7 @@ class _CEquipoScreemState extends State<CEquipoScreem> {
                 children: [
                   Icon(Icons.sports_soccer, color: Colors.black),
                   SizedBox(width: 10),
-                  Text('Crear equipo ', style: TextStyle(color: Colors.black)),
+                  Text('Crear equipo', style: TextStyle(color: Colors.black)),
                 ],
               ),
               onTap: () {
@@ -81,8 +83,7 @@ class _CEquipoScreemState extends State<CEquipoScreem> {
                 children: [
                   Icon(Icons.group, color: Colors.black),
                   SizedBox(width: 10),
-                  Text('Unirse a Juego ',
-                      style: TextStyle(color: Colors.black)),
+                  Text('Unirse a Juego', style: TextStyle(color: Colors.black)),
                 ],
               ),
               onTap: () {
@@ -94,8 +95,7 @@ class _CEquipoScreemState extends State<CEquipoScreem> {
                 children: [
                   Icon(Icons.calendar_today, color: Colors.black),
                   SizedBox(width: 10),
-                  Text('Reservar instalaciones ',
-                      style: TextStyle(color: Colors.black)),
+                  Text('Reservar instalaciones', style: TextStyle(color: Colors.black)),
                 ],
               ),
               onTap: () {
@@ -107,8 +107,7 @@ class _CEquipoScreemState extends State<CEquipoScreem> {
                 children: [
                   Icon(Icons.payment, color: Colors.black),
                   SizedBox(width: 10),
-                  Text('Realizar pago ',
-                      style: TextStyle(color: Colors.black)),
+                  Text('Realizar pago', style: TextStyle(color: Colors.black)),
                 ],
               ),
               onTap: () {
@@ -121,131 +120,186 @@ class _CEquipoScreemState extends State<CEquipoScreem> {
           padding: const EdgeInsets.all(20.0),
           child: Form(
             key: _formKey,
-            child: Column(
-              children: [
-                TextFormField(
-                  decoration: InputDecoration(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  
+                  SizedBox(height: 10),
+                  _buildTextField(
                     labelText: 'Deporte',
-                    prefixIcon: Icon(Icons.sports_soccer),
+                    prefixIcon: Icons.sports_soccer,
+                    onSaved: (value) => _deporte = value!,
+                    validator: (value) =>
+                        value!.isEmpty ? 'Por favor ingresa el deporte' : null,
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Por favor ingresa el deporte';
-                    }
-                    return null;
-                  },
-                  onSaved: (value) {
-                    _deporte = value!;
-                  },
-                ),
-                SizedBox(height: 20),
-                TextFormField(
-                  decoration: InputDecoration(
+                  SizedBox(height: 10),
+                  _buildDatePicker(
+                    context: context,
                     labelText: 'Fecha',
-                    prefixIcon: Icon(Icons.calendar_today),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Por favor ingresa la fecha';
-                    }
-                    return null;
-                  },
-                  onTap: () async {
-                    final pickedDate = await showDatePicker(
-                      context: context,
-                      initialDate: _fecha,
-                      firstDate: DateTime.now(),
-                      lastDate: DateTime(2100),
-                    );
-                    if (pickedDate != null) {
+                    prefixIcon: Icons.calendar_today,
+                    selectedDate: _fecha,
+                    onDateSelected: (pickedDate) {
                       setState(() {
                         _fecha = pickedDate;
                       });
-                    }
-                  },
-                  readOnly: true,
-                  controller: TextEditingController(
-                      text: '${_fecha.day}/${_fecha.month}/${_fecha.year}'),
-                ),
-                SizedBox(height: 20),
-                TextFormField(
-                  decoration: InputDecoration(
-                    labelText: 'Hora',
-                    prefixIcon: Icon(Icons.access_time),
+                    },
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Por favor ingresa la hora';
-                    }
-                    return null;
-                  },
-                  onTap: () async {
-                    final pickedTime = await showTimePicker(
-                      context: context,
-                      initialTime: _hora,
-                    );
-                    if (pickedTime != null) {
+                  SizedBox(height: 10),
+                  _buildTimePicker(
+                    context: context,
+                    labelText: 'Hora',
+                    prefixIcon: Icons.access_time,
+                    selectedTime: _hora,
+                    onTimeSelected: (pickedTime) {
                       setState(() {
                         _hora = pickedTime;
                       });
-                    }
-                  },
-                  readOnly: true,
-                  controller: TextEditingController(
-                      text: '${_hora.hour}:${_hora.minute}'),
-                ),
-                SizedBox(height: 20),
-                TextFormField(
-                  decoration: InputDecoration(
+                    },
+                  ),
+                  SizedBox(height: 10),
+                  _buildTextField(
                     labelText: 'Lugar',
-                    prefixIcon: Icon(Icons.location_on),
+                    prefixIcon: Icons.location_on,
+                    onSaved: (value) => _lugar = value!,
+                    validator: (value) =>
+                        value!.isEmpty ? 'Por favor ingresa el lugar' : null,
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Por favor ingresa el lugar';
-                    }
-                    return null;
-                  },
-                  onSaved: (value) {
-                    _lugar = value!;
-                  },
-                ),
-                SizedBox(height: 20),
-                TextFormField(
-                  decoration: InputDecoration(
+                  SizedBox(height: 10),
+                  _buildTextField(
+                    labelText: 'ID del creador',
+                    prefixIcon: Icons.person,
+                    keyboardType: TextInputType.number,
+                    onSaved: (value) => _creadorId = int.parse(value!),
+                    validator: (value) =>
+                        value!.isEmpty ? 'Por favor ingresa el ID del creador' : null,
+                  ),
+                  SizedBox(height: 10),
+                  _buildTextField(
                     labelText: 'Cantidad máxima de jugadores',
-                    prefixIcon: Icon(Icons.person_add),
+                    prefixIcon: Icons.person_add,
+                    keyboardType: TextInputType.number,
+                    onSaved: (value) => _maxJugadores = int.parse(value!),
+                    validator: (value) => value!.isEmpty
+                        ? 'Por favor ingresa la cantidad máxima de jugadores'
+                        : null,
                   ),
-                  keyboardType: TextInputType.number,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Por favor ingresa la cantidad máxima de jugadores';
-                    }
-                    return null;
-                  },
-                  onSaved: (value) {
-                    _maxJugadores = int.parse(value!);
-                  },
-                ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      _formKey.currentState!.save();
-                      // Aquí puedes enviar los datos a donde quieras
-                      // por ejemplo, puedes imprimirlos en la consola
-                      print('Deporte: $_deporte');
-                      print('Fecha: $_fecha');
-                      print('Hora: $_hora');
-                      print('Lugar: $_lugar');
-                      print('Cantidad máxima de jugadores: $_maxJugadores');
-                    }
-                  },
-                  child: Text('Crear Equipo'),
-                ),
-              ],
+                  SizedBox(height: 10),
+                  SwitchListTile(
+                    title: Text("¿Buscar jugadores?"),
+                    value: _buscaJugadores,
+                    onChanged: (value) {
+                      setState(() {
+                        _buscaJugadores = value;
+                      });
+                    },
+                    secondary: Icon(Icons.search),
+                  ),
+                  SizedBox(height: 20),
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          _formKey.currentState!.save();
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Equipo creado exitosamente')),
+                          );
+                          // Aquí puedes manejar los datos como desees
+                        }
+                      },
+                      child: Text('Crear Equipo'),
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTextField({
+    required String labelText,
+    required IconData prefixIcon,
+    required FormFieldSetter<String> onSaved,
+    required FormFieldValidator<String> validator,
+    TextInputType keyboardType = TextInputType.text,
+  }) {
+    return TextFormField(
+      decoration: InputDecoration(
+        labelText: labelText,
+        prefixIcon: Icon(prefixIcon),
+        border: OutlineInputBorder(),
+      ),
+      onSaved: onSaved,
+      validator: validator,
+      keyboardType: keyboardType,
+    );
+  }
+
+  Widget _buildDatePicker({
+    required BuildContext context,
+    required String labelText,
+    required IconData prefixIcon,
+    required DateTime selectedDate,
+    required Function(DateTime) onDateSelected,
+  }) {
+    return GestureDetector(
+      onTap: () async {
+        final pickedDate = await showDatePicker(
+          context: context,
+          initialDate: selectedDate,
+          firstDate: DateTime.now(),
+          lastDate: DateTime(2100),
+        );
+        if (pickedDate != null) {
+          onDateSelected(pickedDate);
+        }
+      },
+      child: AbsorbPointer(
+        child: TextFormField(
+          decoration: InputDecoration(
+            labelText: labelText,
+            prefixIcon: Icon(prefixIcon),
+            border: OutlineInputBorder(),
+          ),
+          controller: TextEditingController(
+              text: '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}'),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTimePicker({
+    required BuildContext context,
+    required String labelText,
+    required IconData prefixIcon,
+    required TimeOfDay selectedTime,
+    required Function(TimeOfDay) onTimeSelected,
+  }) {
+    return GestureDetector(
+      onTap: () async {
+        final pickedTime = await showTimePicker(
+          context: context,
+          initialTime: selectedTime,
+        );
+        if (pickedTime != null) {
+          onTimeSelected(pickedTime);
+        }
+      },
+      child: AbsorbPointer(
+        child: TextFormField(
+          decoration: InputDecoration(
+            labelText: labelText,
+            prefixIcon: Icon(prefixIcon),
+            border: OutlineInputBorder(),
+          ),
+          controller: TextEditingController(
+              text: '${selectedTime.hour}:${selectedTime.minute}'),
         ),
       ),
     );
