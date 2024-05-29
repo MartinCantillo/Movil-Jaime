@@ -59,11 +59,11 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 ElevatedButton.icon(
                   onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => PppScreen(), // Ir a ppp.dart
-                      ),
-                    );
+                    //Navigator.of(context).push(
+                    //  MaterialPageRoute(
+                      //  builder: (context) => PppScreen(), // Ir a ppp.dart
+                      //),
+                   // );
                   },
                   icon: Icon(Icons.star),
                   label: Text('Puntuación'),

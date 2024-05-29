@@ -1,9 +1,9 @@
-
 import 'package:flutter/material.dart';
+import 'package:project/Data/EquipoData.dart';
+import 'package:project/Model/Equipo.dart';
 import 'package:project/View/Widget/AppBarW.dart';
 import 'package:project/View/Widget/buildTextFieldW.dart';
 import 'package:project/View/Widget/drawer.dart';
-
 
 class CEquipoScreem extends StatefulWidget {
   const CEquipoScreem({Key? key}) : super(key: key);
@@ -118,12 +118,7 @@ class _CEquipoScreemState extends State<CEquipoScreem> {
                   SizedBox(height: 20),
                   Center(
                     child: ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          _formKey.currentState!.save();
-                          _crearEquipo();
-                        }
-                      },
+                      onPressed: _crearEquipo,
                       child: Text('Crear Equipo'),
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(
@@ -141,16 +136,21 @@ class _CEquipoScreemState extends State<CEquipoScreem> {
   }
 
   void _crearEquipo() {
-    final equipo = {
-      'deporte': _deporte,
-      'fecha': _fecha,
-      'hora': _hora,
-      'lugar': _lugar,
-      'creadorId': _creadorId,
-      'maxJugadores': _maxJugadores,
-      'buscaJugadores': _buscaJugadores,
-    };
-    print('Equipo creado: $equipo');
-    // Aquí puedes manejar los datos como desees
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      final nuevoEquipo = Equipo(
+        id: equipos.length + 1,
+        nombreDeporte: _deporte,
+        fecha: _fecha,
+        hora: DateTime(_fecha.year, _fecha.month, _fecha.day, _hora.hour, _hora.minute),
+        lugar: _lugar,
+        creadorId: _creadorId,
+        jugadoresNecesarios: _maxJugadores,
+        buscajugadores: _buscaJugadores,
+        jugadoresIds: [], 
+      );
+      equipos.add(nuevoEquipo); 
+      print('Equipo creado: $nuevoEquipo');
+    }
   }
 }
