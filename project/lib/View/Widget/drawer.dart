@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:project/View/Screem/CEquipoScreem.dart';
+import 'package:project/View/Screem/ComentariosScreem.dart';
 import 'package:project/View/Screem/MyHomePage.dart';
-import 'package:project/View/Screem/PagoScreem.dart';
 import 'package:project/View/Screem/ReservarScreem.dart';
 import 'package:project/View/Screem/UnirseJuegoScreem.dart';
 
 class DrawerW extends StatefulWidget {
-  String? user;
-  String? correo;
+ final  String? user;
+  final String? correo;
   DrawerW({
     Key? key,
     this.user,
@@ -60,8 +60,8 @@ class _DrawerWState extends State<DrawerW> {
         ),
         _buildDrawerItem(
           icon: Icons.payment,
-          text: 'Realizar pago',
-          onTap: () => Navigator.of(context).pushNamed(PagoScreem.nombre),
+          text: 'Comentarios',
+          onTap: () => Navigator.of(context).pushNamed(ComemtariosS.nombre),
         ),
       ]),
     );

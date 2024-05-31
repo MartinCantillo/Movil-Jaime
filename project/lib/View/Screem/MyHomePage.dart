@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project/View/Screem/CEquipoScreem.dart';
-import 'package:project/View/Screem/PagoScreem.dart';
-import 'package:project/View/Screem/ReservarScreem.dart';
-import 'package:project/View/Screem/UnirseJuegoScreem.dart';
 import 'package:project/View/Widget/AppBarW.dart';
 import 'package:project/View/Widget/drawer.dart';
-import 'ppp.dart';
-import 'mmmm.dart'; 
+import 'mmmm.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -61,9 +56,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   onPressed: () {
                     //Navigator.of(context).push(
                     //  MaterialPageRoute(
-                      //  builder: (context) => PppScreen(), // Ir a ppp.dart
-                      //),
-                   // );
+                    //  builder: (context) => PppScreen(), // Ir a ppp.dart
+                    //),
+                    // );
                   },
                   icon: Icon(Icons.star),
                   label: Text('Puntuación'),
@@ -84,7 +79,10 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      drawer:  DrawerW(user: "Martin",correo: "Martin@gmail.com",),
+      drawer: DrawerW(
+        user: "Martin",
+        correo: "Martin@gmail.com",
+      ),
     );
   }
 }

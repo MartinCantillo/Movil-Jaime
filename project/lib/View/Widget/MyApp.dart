@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/View/Screem/CEquipoScreem.dart';
+import 'package:project/View/Screem/ComentariosScreem.dart';
 import 'package:project/View/Screem/LoginPage.dart';
 import 'package:project/View/Screem/MyHomePage.dart';
 import 'package:project/View/Screem/PagoScreem.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         CEquipoScreem.nombre: (context) => const CEquipoScreem(),
         UnirseJuegoScreem.nombre: (context) => const UnirseJuegoScreem(),
         ReservarScreem.nombre: (context) => const ReservarScreem(),
-        PagoScreem.nombre: (context) => const PagoScreem(),
+        ComemtariosS.nombre: (context) => const ComemtariosS(),
       },
       //home: LoginPage(),
     );
