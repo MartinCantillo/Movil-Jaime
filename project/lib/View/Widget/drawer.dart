@@ -58,11 +58,11 @@ class _DrawerWState extends State<DrawerW> {
           text: 'Reservar instalaciones',
           onTap: () => Navigator.of(context).pushNamed(ReservarScreem.nombre),
         ),
-        _buildDrawerItem(
-          icon: Icons.payment,
-          text: 'Realizar pago',
-          onTap: () => Navigator.of(context).pushNamed(PagoScreem.nombre),
-        ),
+        //_buildDrawerItem(
+          //icon: Icons.payment,
+          //text: 'Realizar pago',
+         // onTap: () => Navigator.of(context).pushNamed(PagoScreem.nombre),
+       // ),
       ]),
     );
   }
